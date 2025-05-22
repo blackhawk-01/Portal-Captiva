@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portal Cativo</title>
+  <title>Portal Captivo</title>
 
   <style>
     body {
@@ -17,22 +17,23 @@
       align-items: center;
       flex-direction: column;
       text-align: center;
+      backdrop-filter: blur(5px);
     }
 
     h1 {
       font-size: 2.5rem;
       margin-bottom: 2rem;
-      color: #fff;
+      color: #B88A19; /* COR LARANJA/DOURADA */
       text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
 
     .box {
-      background: rgba(255, 255, 255, 0.05); /* MAIS TRANSLÚCIDO */
+      background: rgba(255, 255, 255, 0.1);
       padding: 2rem;
       border-radius: 1rem;
-      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-      backdrop-filter: blur(2px); /* MENOS FOSCO */
-      -webkit-backdrop-filter: blur(2px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       border: 1px solid rgba(255, 255, 255, 0.18);
       max-width: 400px;
       width: 100%;
@@ -119,19 +120,13 @@
     async function autenticarColaborador(e) {
       e.preventDefault();
       const matricula = document.getElementById("matricula").value;
-
-      try {
-        const resposta = await fetch(`${baseUrl}/autenticar_colaborador`, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ matricula })
-        });
-
-        const resultado = await resposta.text();
-        alert(resultado);
-      } catch (err) {
-        alert("Erro na autenticação de colaborador.");
-      }
+      const resposta = await fetch(`${baseUrl}/autenticar_colaborador`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ matricula })
+      });
+      const resultado = await resposta.text();
+      alert(resultado);
     }
 
     async function autenticarVisitante(e) {
@@ -139,19 +134,13 @@
       const nome = document.getElementById("nome").value;
       const email = document.getElementById("email").value;
       const cpf = document.getElementById("cpf").value;
-
-      try {
-        const resposta = await fetch(`${baseUrl}/registrar_visitante`, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ nome, email, cpf })
-        });
-
-        const resultado = await resposta.text();
-        alert(resultado);
-      } catch (err) {
-        alert("Erro no registro de visitante.");
-      }
+      const resposta = await fetch(`${baseUrl}/registrar_visitante`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ nome, email, cpf })
+      });
+      const resultado = await resposta.text();
+      alert(resultado);
     }
   </script>
 
