@@ -27,19 +27,21 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
 
-    .box {
-      background: rgba(255, 255, 255, 0.1); /* MAIS TRANSLÚCIDO */
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      backdrop-filter: blur(4px); /* MENOS FOSCO */
-      -webkit-backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      max-width: 400px;
-      width: 100%;
-      margin: 1rem 0;
-      transition: transform 0.3s ease;
-    }
+<style>
+  .box {
+    background: rgba(255, 255, 255, 0.05); /* MAIS TRANSPARENTE */
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(2px); /* MENOS DESFOCADO */
+    -webkit-backdrop-filter: blur(2px); /* MENOS DESFOCADO */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    max-width: 400px;
+    width: 100%;
+    margin: 1rem 0;
+    transition: transform 0.3s ease;
+  }
+</style>
 
     .box:hover {
       transform: translateY(-5px);
@@ -87,7 +89,7 @@
 
 <body>
 
-  <h1>Bem-vindo ao Mundo vaxxino</h1>
+  <h1>Bem-vindo ao Mundo vaxxinova</h1>
 
   <div class="box">
     <button class="button" onclick="mostrarFormulario('visitante')">Sou Visitante</button>
