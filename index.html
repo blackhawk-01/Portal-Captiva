@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portal Captivo</title>
+  <title>Portal Cativo</title>
 
   <style>
     body {
@@ -17,7 +17,6 @@
       align-items: center;
       flex-direction: column;
       text-align: center;
-      backdrop-filter: blur(5px);
     }
 
     h1 {
@@ -27,21 +26,19 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
 
-<style>
-  .box {
-    background: rgba(255, 255, 255, 0.05); /* MAIS TRANSPARENTE */
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(2px); /* MENOS DESFOCADO */
-    -webkit-backdrop-filter: blur(2px); /* MENOS DESFOCADO */
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    max-width: 400px;
-    width: 100%;
-    margin: 1rem 0;
-    transition: transform 0.3s ease;
-  }
-</style>
+    .box {
+      background: rgba(255, 255, 255, 0.05); /* MAIS TRANSLÚCIDO */
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(2px); /* MENOS FOSCO */
+      -webkit-backdrop-filter: blur(2px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      max-width: 400px;
+      width: 100%;
+      margin: 1rem 0;
+      transition: transform 0.3s ease;
+    }
 
     .box:hover {
       transform: translateY(-5px);
@@ -89,7 +86,7 @@
 
 <body>
 
-  <h1>Bem-vindo ao Mundo vaxxinova</h1>
+  <h1>Bem-vindo ao Mundo Vaxxino</h1>
 
   <div class="box">
     <button class="button" onclick="mostrarFormulario('visitante')">Sou Visitante</button>
@@ -122,13 +119,19 @@
     async function autenticarColaborador(e) {
       e.preventDefault();
       const matricula = document.getElementById("matricula").value;
-      const resposta = await fetch(`${baseUrl}/autenticar_colaborador`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ matricula })
-      });
-      const resultado = await resposta.text();
-      alert(resultado);
+
+      try {
+        const resposta = await fetch(`${baseUrl}/autenticar_colaborador`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ matricula })
+        });
+
+        const resultado = await resposta.text();
+        alert(resultado);
+      } catch (err) {
+        alert("Erro na autenticação de colaborador.");
+      }
     }
 
     async function autenticarVisitante(e) {
@@ -136,13 +139,19 @@
       const nome = document.getElementById("nome").value;
       const email = document.getElementById("email").value;
       const cpf = document.getElementById("cpf").value;
-      const resposta = await fetch(`${baseUrl}/registrar_visitante`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ nome, email, cpf })
-      });
-      const resultado = await resposta.text();
-      alert(resultado);
+
+      try {
+        const resposta = await fetch(`${baseUrl}/registrar_visitante`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ nome, email, cpf })
+        });
+
+        const resultado = await resposta.text();
+        alert(resultado);
+      } catch (err) {
+        alert("Erro no registro de visitante.");
+      }
     }
   </script>
 
